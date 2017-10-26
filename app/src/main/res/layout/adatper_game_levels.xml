@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="224dp"
+    android:layout_height="240dp"
+    android:background="#fff"
+    android:elevation="4dp"
+    tools:targetApi="lollipop">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/adapter_game_levels_level_number_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:gravity="center"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="مرحله ی 1"
+                android:textColor="#000"
+                android:textSize="18sp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.25dp"
+                android:background="#aaa"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/adapter_game_levels_level_prize_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:gravity="center_vertical|right"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:drawablePadding="16dp"
+                android:layout_weight="1"
+                android:text="150 سکه"
+                android:drawableRight="@drawable/coin"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/adapter_game_levels_table_size_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:gravity="center_vertical|right"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:drawablePadding="16dp"
+                android:layout_weight="1"
+                android:text="3 * 3"
+                android:drawableRight="@drawable/table"/>
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/adapter_game_levels_words_count_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:gravity="center_vertical|right"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:drawablePadding="16dp"
+                android:text="1 کلمه"
+                android:drawableRight="@drawable/word"/>
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/adapter_game_levels_question_mark_image_view"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/question"/>
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/adapter_game_levels_delete_image_button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/delete"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

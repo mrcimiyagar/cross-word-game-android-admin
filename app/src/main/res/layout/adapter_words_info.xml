@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <TextView
+                android:id="@+id/adapter_words_info_title_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:text="سوال 1"
+                android:gravity="center"/>
+
+            <ImageButton
+                android:id="@+id/adapter_words_info_up_button"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/up"
+                android:background="@android:color/transparent"/>
+
+            <ImageButton
+                android:id="@+id/adapter_words_info_delete_button"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@drawable/delete"
+                android:layout_alignParentRight="true"
+                android:background="@android:color/transparent"/>
+
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:background="#888"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/adapter_words_info_question_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:minHeight="56dp"
+            android:text="سوال"
+            android:paddingLeft="32dp"
+            android:gravity="center_vertical"
+            android:paddingRight="32dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.25dp"
+            android:background="#888"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/adapter_words_info_word_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:minHeight="56dp"
+            android:text="کلمه"
+            android:paddingLeft="32dp"
+            android:gravity="center_vertical"
+            android:paddingRight="32dp"/>
+
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
