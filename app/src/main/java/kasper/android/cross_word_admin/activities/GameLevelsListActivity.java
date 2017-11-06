@@ -26,7 +26,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class GameLevelsMainActivity extends AppCompatActivity {
+public class GameLevelsListActivity extends AppCompatActivity {
 
     DiscreteScrollView gameLevelsRV;
     FloatingActionButton addBtn;
@@ -40,7 +40,7 @@ public class GameLevelsMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_levels_main);
+        setContentView(R.layout.activity_game_levels_list);
 
         gameLevelsRV = findViewById(R.id.activity_main_game_levels_scroll_view);
         addBtn = findViewById(R.id.activity_main_add_button);
@@ -111,6 +111,9 @@ public class GameLevelsMainActivity extends AppCompatActivity {
 
                     String urlStr = "http://136.243.229.153/CrossWordGame/api/GameLevels/" + method + "?firstKey="
                             + firstKey + "&secondKey=" + secondKey + "&updateVersion=" + System.currentTimeMillis();
+
+                    Log.d("KasperLogger", urlStr);
+
                     OkHttpClient client = new OkHttpClient();
                     Request request = new Request.Builder()
                             .url(urlStr)
@@ -199,7 +202,7 @@ public class GameLevelsMainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            gameLevelsRV.setAdapter(new GameLevelsAdapter(GameLevelsMainActivity.this, MyApp.getInstance().getGameLevels()));
+                            gameLevelsRV.setAdapter(new GameLevelsAdapter(GameLevelsListActivity.this, MyApp.getInstance().getGameLevels()));
                             loadingLayout.setVisibility(View.GONE);
                         }
                     });
@@ -418,5 +421,9 @@ public class GameLevelsMainActivity extends AppCompatActivity {
         gameLevel.setWords(new ArrayList<WordInfo>());
 
         startActivityForResult(new Intent(this, GameLevelsAddActivity.class).putExtra("game-level", gameLevel).putExtra("create", true), 1);
+    }
+
+    public void onBackBtnClicked(View view) {
+        this.finish();
     }
 }

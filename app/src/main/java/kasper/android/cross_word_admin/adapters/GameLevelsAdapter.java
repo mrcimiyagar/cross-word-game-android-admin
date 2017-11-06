@@ -13,16 +13,16 @@ import java.util.ArrayList;
 
 import kasper.android.cross_word_admin.R;
 import kasper.android.cross_word_admin.activities.GameLevelsAddActivity;
-import kasper.android.cross_word_admin.activities.GameLevelsMainActivity;
+import kasper.android.cross_word_admin.activities.GameLevelsListActivity;
 import kasper.android.cross_word_admin.activities.YesNoActivity;
 import kasper.android.cross_word_admin.models.GameLevel;
 
 public class GameLevelsAdapter extends RecyclerView.Adapter<GameLevelsAdapter.GameLevelHolder> {
 
-    private GameLevelsMainActivity activity;
+    private GameLevelsListActivity activity;
     private ArrayList<GameLevel> gameLevels;
 
-    public GameLevelsAdapter(GameLevelsMainActivity activity, ArrayList<GameLevel> gameLevels) {
+    public GameLevelsAdapter(GameLevelsListActivity activity, ArrayList<GameLevel> gameLevels) {
         this.activity = activity;
         this.gameLevels = gameLevels;
         this.notifyDataSetChanged();
