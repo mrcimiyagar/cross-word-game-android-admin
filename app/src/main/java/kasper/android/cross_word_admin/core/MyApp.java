@@ -1,9 +1,13 @@
 package kasper.android.cross_word_admin.core;
 
 import android.app.Application;
+import android.support.constraint.solver.Cache;
 
 import java.util.ArrayList;
 
+import kasper.android.cross_word_admin.helpers.CacheHelper;
+import kasper.android.cross_word_admin.helpers.DisplayHelper;
+import kasper.android.cross_word_admin.helpers.NetworkHelper;
 import kasper.android.cross_word_admin.models.GameLevel;
 
 public class MyApp extends Application {
@@ -13,19 +17,27 @@ public class MyApp extends Application {
         return instance;
     }
 
-    private ArrayList<GameLevel> gameLevels;
-
-    public ArrayList<GameLevel> getGameLevels() {
-        return gameLevels;
+    private NetworkHelper networkHelper;
+    public NetworkHelper getNetworkHelper() {
+        return this.networkHelper;
     }
 
-    public void setGameLevels(ArrayList<GameLevel> gameLevels) {
-        this.gameLevels = gameLevels;
+    private CacheHelper cacheHelper;
+    public CacheHelper getCacheHelper() {
+        return this.cacheHelper;
+    }
+
+    private DisplayHelper displayHelper;
+    public DisplayHelper getDisplayHelper() {
+        return this.displayHelper;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        this.networkHelper = new NetworkHelper();
+        this.cacheHelper = new CacheHelper();
+        this.displayHelper = new DisplayHelper();
     }
 }

@@ -67,7 +67,18 @@ public class GameLevelsAddActivity extends AppCompatActivity {
 
                 tableRV.setLayoutManager(new GridLayoutManager(GameLevelsAddActivity.this, gameLevel.getTableSize()
                         , LinearLayoutManager.VERTICAL, false));
-                tableRV.setAdapter(new EmptyTableAdapter(gameLevel.getTableData()));
+                String[] tableDataArr = new String[(int)Math.pow(gameLevel.getTableSize(), 2)];
+                if (gameLevel.getTableData().length() == tableDataArr.length) {
+                    for (int counter = 0; counter < tableDataArr.length; counter++) {
+                        tableDataArr[counter] = gameLevel.getTableData().charAt(counter) + "";
+                    }
+                }
+                else {
+                    for (int counter = 0; counter < tableDataArr.length; counter++) {
+                        tableDataArr[counter] = "";
+                    }
+                }
+                tableRV.setAdapter(new EmptyTableAdapter(tableDataArr));
             }
         });
 
@@ -151,18 +162,24 @@ public class GameLevelsAddActivity extends AppCompatActivity {
 
                 boolean sameTableData = true;
 
-                if (tableData.length != gameLevel.getTableData().length) {
+                if (tableData.length != gameLevel.getTableData().length()) {
                     sameTableData = false;
                 } else {
                     for (int counter = 0; counter < tableData.length; counter++) {
-                        if (!tableData[counter].equals(gameLevel.getTableData()[counter])) {
+                        if (!tableData[counter].equals(gameLevel.getTableData().charAt(counter) + "")) {
                             sameTableData = false;
                             break;
                         }
                     }
                 }
 
-                gameLevel.setTableData(tableData);
+                String tableDataStr = "";
+
+                for (int counter = 0; counter < tableData.length; counter++) {
+                    tableDataStr += tableData[counter];
+                }
+
+                gameLevel.setTableData(tableDataStr);
 
                 if (!sameTableData) {
                     gameLevel.setWords(new ArrayList<WordInfo>());

@@ -14,7 +14,7 @@ public class EmptyTableAdapter extends RecyclerView.Adapter<EmptyTableAdapter.Em
 
     private String[] tableData;
     public String[] getTableData() {
-        return this.tableData;
+        return tableData;
     }
 
     private int tableSize;

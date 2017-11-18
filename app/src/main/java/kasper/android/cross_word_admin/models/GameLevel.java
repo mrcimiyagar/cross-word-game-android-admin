@@ -8,7 +8,7 @@ public class GameLevel implements Serializable {
     private int number;
     private int prize;
     private int tableSize;
-    private String[] tableData;
+    private String tableData;
     private ArrayList<WordInfo> words;
     private boolean hasQuestion;
 
@@ -44,11 +44,11 @@ public class GameLevel implements Serializable {
         this.tableSize = tableSize;
     }
 
-    public String[] getTableData() {
+    public String getTableData() {
         return tableData;
     }
 
-    public void setTableData(String[] tableData) {
+    public void setTableData(String tableData) {
         this.tableData = tableData;
     }
 

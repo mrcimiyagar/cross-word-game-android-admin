@@ -6,10 +6,10 @@
     android:layout_height="480dp"
     android:background="@android:color/transparent"
     android:layout_gravity="center"
-    tools:context=".activities.YesNoActivity">
+    tools:context=".activities.WordAddActivity">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/activity_game_exit_title_text_view"
+        android:id="@+id/activity_words_add_container"
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:elevation="4dp"
@@ -21,27 +21,56 @@
         app:cardBackgroundColor="#fff"
         app:cardCornerRadius="14dp">
 
-        <TextView
-            android:id="@+id/activity_yes_no_content_text_view"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="56dp"
-            android:elevation="4dp"
-            android:gravity="center"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
-            android:textSize="20sp"
-            android:textColor="#000"/>
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_words_add_word_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textSize="20sp"
+                android:hint="واژه"
+                android:textColorHint="#666"
+                android:textColor="#000"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/activity_words_add_meaning_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="42dp"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textSize="17.5sp"
+                android:hint="معنی واژه"
+                android:textColorHint="#666"
+                android:textColor="#000"
+                android:inputType="textMultiLine"/>
+
+        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
     <TextView
-        android:id="@+id/activity_yes_no_title_text_view"
+        android:id="@+id/activity_words_add_title_text_view"
         android:layout_width="wrap_content"
         android:layout_height="56dp"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/activity_game_exit_title_text_view"
+        android:layout_above="@id/activity_words_add_container"
         android:layout_marginBottom="-28dp"
         android:background="@drawable/background_floating_text"
         android:textColor="#FFF"
@@ -55,7 +84,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="88dp"
-        android:layout_below="@id/activity_game_exit_title_text_view"
+        android:layout_below="@id/activity_words_add_container"
         android:layout_marginTop="-44dp"
         android:orientation="horizontal"
         android:gravity="center"

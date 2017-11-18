@@ -22,7 +22,7 @@ import kasper.android.cross_word_admin.adapters.FilledTableAdapter;
 public class GameLevelsWordsAddActivity extends AppCompatActivity {
 
     boolean hasQuestion;
-    String[] tableData;
+    String tableData;
     int tableSize;
 
     CardView questionContainer;
@@ -48,8 +48,8 @@ public class GameLevelsWordsAddActivity extends AppCompatActivity {
         this.answerPosesY = new ArrayList<>();
         this.answerIndices = new ArrayList<>();
         this.hasQuestion = getIntent().getExtras().getBoolean("has-question");
-        this.tableData = getIntent().getExtras().getStringArray("table-data");
-        this.tableSize = (int)(Math.sqrt(tableData.length));
+        this.tableData = getIntent().getExtras().getString("table-data");
+        this.tableSize = (int)(Math.sqrt(tableData.length()));
 
         questionContainer.setVisibility(hasQuestion ? View.VISIBLE : View.GONE);
 
@@ -64,9 +64,15 @@ public class GameLevelsWordsAddActivity extends AppCompatActivity {
                 wordContainer.setLayoutParams(params);
 
                 wordRV.setLayoutManager(new GridLayoutManager(GameLevelsWordsAddActivity.this, (int)Math.sqrt
-                        (tableData.length), LinearLayoutManager.VERTICAL, false));
+                        (tableData.length()), LinearLayoutManager.VERTICAL, false));
 
-                wordRV.setAdapter(new FilledTableAdapter(tableData));
+                String[] tableDataArr = new String[tableData.length()];
+
+                for (int counter = 0; counter < tableDataArr.length; counter++) {
+                    tableDataArr[counter] = tableData.charAt(counter) + "";
+                }
+
+                wordRV.setAdapter(new FilledTableAdapter(tableDataArr));
 
                 wordRV.setOnTouchListener(new View.OnTouchListener() {
                     @Override

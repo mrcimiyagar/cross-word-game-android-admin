@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="480dp"
+    android:background="@android:color/transparent"
+    android:layout_gravity="center"
+    tools:context=".activities.WordAddActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/activity_words_add_container"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        tools:targetApi="lollipop"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:paddingBottom="60dp"
+        app:cardBackgroundColor="#fff"
+        app:cardCornerRadius="14dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_word_details_word_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textSize="20sp"
+                android:textColorHint="#666"
+                android:textColor="#000"
+                android:text="واژه"/>
+
+            <TextView
+                android:id="@+id/activity_words_details_meaning_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="48dp"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textSize="17.5sp"
+                android:textColorHint="#666"
+                android:textColor="#000"
+                android:text="معنی واژه"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/activity_word_details_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/activity_words_add_container"
+        android:layout_marginBottom="-28dp"
+        android:background="@drawable/background_floating_text"
+        android:textColor="#FFF"
+        android:textSize="25sp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:gravity="center"
+        android:elevation="6dp"
+        tools:targetApi="lollipop" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabSize="normal"
+        android:src="@drawable/ok"
+        android:tint="#FFF"
+        app:backgroundTint="@color/colorAccent"
+        android:onClick="onOkBtnClicked"
+        android:layout_below="@id/activity_words_add_container"
+        android:layout_marginTop="-28dp"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:elevation="4dp"
+        tools:targetApi="lollipop">
+
+    </LinearLayout>
+
+</RelativeLayout>

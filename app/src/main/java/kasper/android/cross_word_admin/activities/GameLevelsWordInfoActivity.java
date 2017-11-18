@@ -72,12 +72,21 @@ public class GameLevelsWordInfoActivity extends AppCompatActivity {
                 String answer = "";
 
                 for (int answerIndex : answerIndices) {
-                    answer += (gameLevel.getTableData()[answerIndex] + "");
+                    answer += (gameLevel.getTableData().charAt(answerIndex) + "");
                 }
 
                 WordInfo wordInfo = new WordInfo();
                 wordInfo.setQuestion(question);
-                wordInfo.setAnswerIndex(answerIndices);
+
+                String answerIndexStr = "";
+                for (int counter = 0; counter < answerIndices.length; counter++) {
+                    answerIndexStr += answerIndices[counter] + "-";
+                }
+                if (answerIndexStr.endsWith("-")) {
+                    answerIndexStr = answerIndexStr.substring(0, answerIndexStr.length() - 1);
+                }
+
+                wordInfo.setAnswerIndex(answerIndexStr);
                 wordInfo.setAnswer(answer);
 
                 gameLevel.getWords().add(wordInfo);

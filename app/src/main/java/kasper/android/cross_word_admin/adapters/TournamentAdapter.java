@@ -24,10 +24,10 @@ public class TournamentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case 0: {
-                return new HeaderHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_tournament_header, parent, false));
+                return new HeaderHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_tour_header, parent, false));
             }
             case 1: {
-                return new TourPlayerHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_tournament_tourplayer, parent, false));
+                return new TourPlayerHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_tour_tourplayer, parent, false));
             }
             default: {
                 return null;
@@ -64,7 +64,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                 TourPlayer tourPlayer = tourPlayers.get(position - 1);
 
-                ((TourPlayerHolder) holder).scoreTV.setText(tourPlayer.getLevelsDoneCount() + "");
+                ((TourPlayerHolder) holder).scoreTV.setText(tourPlayer.getScore() + "");
                 ((TourPlayerHolder) holder).nameTV.setText(tourPlayer.getName());
                 ((TourPlayerHolder) holder).rankTV.setText(position + "");
 

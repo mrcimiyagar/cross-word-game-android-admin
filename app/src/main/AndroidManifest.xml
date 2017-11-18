@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kasper.android.cross_word_admin">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -38,7 +39,28 @@
             android:name=".activities.YesNoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dialog" />
-        <activity android:name=".activities.TournamentActivity"></activity>
+        <activity
+            android:name=".activities.TournamentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PresentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity android:name=".activities.StartTournamentActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.MessagesActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.MessageAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog"/>
+        <activity android:name=".activities.WordsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.WordAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog"/>
+        <activity android:name=".activities.WordDetailsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dialog"/>
     </application>
 
 </manifest>

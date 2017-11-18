@@ -1,20 +1,30 @@
 package kasper.android.cross_word_admin.activities;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.LinearLayoutManager;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import de.codecrafters.tableview.TableHeaderAdapter;
+import de.codecrafters.tableview.TableView;
+import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
+import de.codecrafters.tableview.model.TableColumnWeightModel;
+import de.codecrafters.tableview.toolkit.TableDataRowBackgroundProviders;
 import kasper.android.cross_word_admin.R;
-import kasper.android.cross_word_admin.adapters.TournamentAdapter;
+import kasper.android.cross_word_admin.adapters.TourPlayerDataAdapter;
+import kasper.android.cross_word_admin.core.MyApp;
 import kasper.android.cross_word_admin.models.TourPlayer;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -22,27 +32,86 @@ import okhttp3.Response;
 
 public class TournamentActivity extends AppCompatActivity {
 
-    private RecyclerView itemsRV;
+    private TableView<TourPlayer> tableView;
     private RelativeLayout loadingLayout;
+
+    private int totalDays, leftDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament);
 
-        itemsRV = (RecyclerView) findViewById(R.id.activity_tournament_recycler_view);
-        loadingLayout = (RelativeLayout) findViewById(R.id.activity_tournament_main_loading_layout);
+        tableView = findViewById(R.id.activity_tournament_table_view);
+        loadingLayout = findViewById(R.id.activity_tournament_main_loading_layout);
 
-        itemsRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        int colorEvenRows = Color.parseColor("#ffffffff");
+        int colorOddRows = Color.parseColor("#ffeeeeee");
+        tableView.setDataRowBackgroundProvider(TableDataRowBackgroundProviders.alternatingRowColors(colorEvenRows, colorOddRows));
 
-        readTourPlayersFromServer();
+        TableColumnWeightModel columnModel = new TableColumnWeightModel(3);
+        columnModel.setColumnWeight(0, 2);
+        columnModel.setColumnWeight(1, 5);
+        columnModel.setColumnWeight(2, 2);
+        tableView.setColumnModel(columnModel);
+
+        tableView.setSwipeToRefreshEnabled(true);
+        tableView.setSwipeToRefreshListener(new SwipeToRefreshListener() {
+            @Override
+            public void onRefresh(RefreshIndicator refreshIndicator) {
+
+                readTourPlayersFromServer(refreshIndicator);
+            }
+        });
+
+        tableView.setHeaderAdapter(new TableHeaderAdapter(this, 3) {
+            @Override
+            public View getHeaderView(int columnIndex, ViewGroup parentView) {
+
+                TextView headerView = new TextView(getContext());
+                headerView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT
+                        , LinearLayout.LayoutParams.MATCH_PARENT));
+                headerView.setGravity(Gravity.CENTER);
+                headerView.setTextColor(Color.WHITE);
+                headerView.setTextSize(16);
+                headerView.setPadding(0, (int) MyApp.getInstance().getDisplayHelper().dpToPx(16), 0,
+                        (int) MyApp.getInstance().getDisplayHelper().dpToPx(16));
+
+                switch (columnIndex) {
+                    case 0:
+                        headerView.setText("امتیاز");
+                        break;
+                    case 1:
+                        headerView.setText("نام بازیکن");
+                        break;
+                    case 2:
+                        headerView.setText("رتبه");
+                        break;
+                }
+
+                return headerView;
+            }
+        });
+
+        this.totalDays = getIntent().getExtras().getInt("tour-total-days");
+        this.leftDays = getIntent().getExtras().getInt("tour-left-days");
+
+        readTourPlayersFromServer(null);
     }
 
     public void onBackBtnClicked(View view) {
         this.finish();
     }
 
-    private void readTourPlayersFromServer() {
+    public void onInfoBtnClicked(View view) {
+        startActivity(new Intent(this, PresentActivity.class).putExtra("present-title", "تورنمنت")
+                .putExtra("present-content", new String[] {
+                        "تورنمنت " + totalDays + " روزه فعال است",
+                        leftDays + " روز تا پایان تورنمنت باقی مانده است"
+                }));
+    }
+
+    private void readTourPlayersFromServer(final SwipeToRefreshListener.RefreshIndicator refreshIndicator) {
 
         loadingLayout.setVisibility(View.VISIBLE);
 
@@ -81,7 +150,7 @@ public class TournamentActivity extends AppCompatActivity {
                         TourPlayer tourPlayer = new TourPlayer();
                         tourPlayer.setId(jsonObject.getInt("id"));
                         tourPlayer.setName(jsonObject.getString("name"));
-                        tourPlayer.setLevelsDoneCount(jsonObject.getInt("levelsDoneCount"));
+                        tourPlayer.setScore(jsonObject.getInt("score"));
 
                         tourPlayers.add(tourPlayer);
                     }
@@ -90,7 +159,11 @@ public class TournamentActivity extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            itemsRV.setAdapter(new TournamentAdapter(tourPlayers));
+                            if (refreshIndicator != null) {
+                                refreshIndicator.hide();
+                            }
+
+                            tableView.setDataAdapter(new TourPlayerDataAdapter(TournamentActivity.this, tourPlayers));
                             loadingLayout.setVisibility(View.GONE);
                         }
                     });

@@ -6,7 +6,7 @@ public class WordInfo implements Serializable {
 
     private String question;
     private String answer;
-    private int[] answerIndex;
+    private String answerIndex;
 
     public String getQuestion() {
         return question;
@@ -24,11 +24,11 @@ public class WordInfo implements Serializable {
         this.answer = answer;
     }
 
-    public int[] getAnswerIndex() {
+    public String getAnswerIndex() {
         return answerIndex;
     }
 
-    public void setAnswerIndex(int[] answerIndex) {
+    public void setAnswerIndex(String answerIndex) {
         this.answerIndex = answerIndex;
     }
 }

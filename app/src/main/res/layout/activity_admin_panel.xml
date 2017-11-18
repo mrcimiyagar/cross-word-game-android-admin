@@ -7,226 +7,362 @@
     android:background="#eee"
     tools:context="kasper.android.cross_word_admin.activities.AdminPanelActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentInsetStart="0dp"
+            app:contentInsetEnd="0dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:text="پنل ادمین بازی جدول"
+                android:textColor="#fff"
+                android:gravity="center"
+                android:paddingRight="32dp"
+                android:paddingLeft="32dp"/>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="64dp"
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:text="پنل ادمین بازی جدول"
-                android:textColor="#666"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:paddingRight="32dp"
-                android:paddingLeft="32dp"/>
-
-            <RelativeLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="@color/colorPrimary">
 
-                <android.support.v7.widget.CardView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="4dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:text="0  مرحله در بازی موجود است"
-                            android:gravity="center_vertical|right"
-                            android:paddingRight="16dp"
-                            android:paddingLeft="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:textColor="#000"
-                            android:textSize="16sp"
-                            android:layout_marginTop="44dp"
-                            android:layout_marginBottom="8dp"/>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0.25dp"
-                            android:background="#666"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"/>
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="56dp"
-                            android:layout_gravity="right"
-                            android:background="@android:color/transparent"
-                            android:text="لیست مراحل بازی"
-                            android:gravity="center_vertical|right"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:paddingRight="16dp"
-                            android:paddingLeft="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:textColor="#000"
-                            android:textSize="18sp"
-                            android:drawableLeft="@drawable/go"
-                            android:drawablePadding="8dp"
-                            android:onClick="onGameLevelsBtnClicked"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_centerHorizontal="true"
-                    app:cardBackgroundColor="@color/colorGreen"
-                    app:cardCornerRadius="4dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    app:cardElevation="4dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                         android:text="مراحل بازی"
+                        android:textColor="#fff"
                         android:gravity="center"
+                        android:paddingRight="32dp"
+                        android:paddingLeft="32dp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#fff"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"/>
+
+                    <TextView
+                        android:id="@+id/activity_admin_panel_game_levels_count_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="0  مرحله در بازی موجود است"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
                         android:textColor="#fff"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"/>
 
-                </android.support.v7.widget.CardView>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/rectound_stroke"
+                        android:text="لیست مراحل"
+                        android:gravity="center"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:onClick="onGameLevelsBtnClicked"/>
 
-            </RelativeLayout>
+                </LinearLayout>
 
-            <RelativeLayout
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="@color/colorPrimary">
 
-                <android.support.v7.widget.CardView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="44dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="4dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:text="تورنمنت فعال  20  روزه موجود است"
-                            android:gravity="center_vertical|right"
-                            android:paddingRight="16dp"
-                            android:paddingLeft="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:textColor="#000"
-                            android:textSize="16sp"
-                            android:layout_marginTop="44dp"
-                            android:layout_marginBottom="8dp"/>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0.25dp"
-                            android:background="#666"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"/>
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="56dp"
-                            android:text="13  روز تا پایان تورنمت باقی مانده است"
-                            android:gravity="center_vertical|right"
-                            android:paddingRight="16dp"
-                            android:paddingLeft="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:textColor="#000"
-                            android:textSize="16sp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="8dp"/>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0.25dp"
-                            android:background="#666"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"/>
-
-                        <Button
-                            android:layout_width="wrap_content"
-                            android:layout_height="56dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_gravity="right"
-                            android:background="@android:color/transparent"
-                            android:text="لیست کاربران تورنمنت"
-                            android:gravity="center_vertical|right"
-                            android:paddingRight="16dp"
-                            android:paddingLeft="16dp"
-                            android:layout_marginLeft="16dp"
-                            android:layout_marginRight="16dp"
-                            android:textColor="#000"
-                            android:textSize="18sp"
-                            android:drawableLeft="@drawable/go"
-                            android:drawablePadding="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:onClick="onTournamentBtnClicked"/>
-
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_centerHorizontal="true"
-                    app:cardBackgroundColor="@color/colorBlue"
-                    app:cardCornerRadius="4dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp"
-                    app:cardElevation="4dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="56dp"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
                         android:text="تورنمنت"
+                        android:textColor="#fff"
                         android:gravity="center"
+                        android:paddingRight="32dp"
+                        android:paddingLeft="32dp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#fff"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"/>
+
+                    <TextView
+                        android:id="@+id/activity_admin_panel_tour_total_days_count_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="تورنمنت فعال  20  روزه موجود است"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:textColor="#fff"
                         android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:layout_marginTop="16dp"/>
 
-                </android.support.v7.widget.CardView>
+                    <TextView
+                        android:id="@+id/activity_admin_panel_tour_left_days_count_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="13  روز تا پایان تورنمت باقی مانده است"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="8dp"/>
 
-            </RelativeLayout>
+                    <TextView
+                        android:id="@+id/activity_admin_panel_tour_players_count_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="13  روز تا پایان تورنمت باقی مانده است"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <Button
+                        android:id="@+id/activity_admin_panel_tour_control_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/rectound_stroke"
+                        android:text="لیست کاربران"
+                        android:gravity="center"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:onClick="onTournamentBtnClicked"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="@color/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:text="پیام های عمومی"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:paddingRight="32dp"
+                        android:paddingLeft="32dp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#fff"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"/>
+
+                    <TextView
+                        android:id="@+id/activity_admin_panel_messages_count_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="15 پیام ارسال شده است"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/rectound_stroke"
+                        android:text="لیست پیام ها"
+                        android:gravity="center"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:onClick="onMessagesBtnClicked"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="@color/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:text="دیکشتری کلمات"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:paddingRight="32dp"
+                        android:paddingLeft="32dp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#fff"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"/>
+
+                    <TextView
+                        android:id="@+id/activity_admin_panel_words_count_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:text="8 کلمه ذخیره شده است"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="8dp"
+                        android:paddingLeft="8dp"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/rectound_stroke"
+                        android:text="لیست واژه ها"
+                        android:gravity="center"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="24dp"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:onClick="onDictionaryBtnClicked"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/activity_admin_panel_loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="8dp"
+        android:background="#66000000"
+        android:visibility="gone">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="320dp"
+            android:layout_height="160dp"
+            android:layout_centerInParent="true">
+
+            <ProgressBar
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_gravity="center"
+                android:indeterminate="true"/>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
 
 </RelativeLayout>

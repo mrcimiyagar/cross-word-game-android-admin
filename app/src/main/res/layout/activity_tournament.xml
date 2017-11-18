@@ -2,13 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:table="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="kasper.android.cross_word_admin.activities.TournamentActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp">
+        android:layout_height="56dp"
+        android:visibility="visible">
 
         <android.support.v7.widget.Toolbar
             android:layout_width="match_parent"
@@ -38,16 +40,29 @@
                     android:rotation="180"
                     android:onClick="onBackBtnClicked"/>
 
+                <ImageButton
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/info"
+                    android:tint="#fff"
+                    android:onClick="onInfoBtnClicked"/>
+
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/activity_tournament_recycler_view"
+    <de.codecrafters.tableview.TableView
+        android:id="@+id/activity_tournament_table_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        table:tableView_headerColor="@color/colorPrimary"
+        app:tableView_headerElevation="4"
+        table:tableView_columnCount="3"
+        android:divider="@android:color/black"
+        android:dividerHeight="1dip"
         android:layout_marginTop="56dp"/>
 
     <RelativeLayout

@@ -4,7 +4,7 @@ public class TourPlayer {
 
     private int id;
     private String name;
-    private int levelsDoneCount;
+    private int score;
 
     public int getId() {
         return id;
@@ -22,11 +22,11 @@ public class TourPlayer {
         this.name = name;
     }
 
-    public int getLevelsDoneCount() {
-        return levelsDoneCount;
+    public int getScore() {
+        return score;
     }
 
-    public void setLevelsDoneCount(int levelsDoneCount) {
-        this.levelsDoneCount = levelsDoneCount;
+    public void setScore(int score) {
+        this.score = score;
     }
 }

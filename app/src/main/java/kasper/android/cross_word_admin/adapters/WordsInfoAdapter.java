@@ -27,7 +27,7 @@ public class WordsInfoAdapter extends RecyclerView.Adapter<WordsInfoAdapter.Word
 
     @Override
     public WordInfoHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new WordInfoHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_words_info, parent, false));
+        return new WordInfoHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_words_infos, parent, false));
     }
 
     @Override
