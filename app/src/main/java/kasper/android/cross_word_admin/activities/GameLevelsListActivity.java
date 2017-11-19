@@ -172,8 +172,6 @@ public class GameLevelsListActivity extends AppCompatActivity {
 
     public void onInfoBtnClicked(View view) {
         startActivity(new Intent(this, PresentActivity.class).putExtra("present-title", "مراحل بازی")
-                .putExtra("present-content", new String[] {
-                        gameLevelsRV.getAdapter().getItemCount() + " مرحله در بازی موجود است"
-                }));
+                .putExtra("present-content", gameLevelsRV.getAdapter().getItemCount() + " مرحله در بازی موجود است"));
     }
 }

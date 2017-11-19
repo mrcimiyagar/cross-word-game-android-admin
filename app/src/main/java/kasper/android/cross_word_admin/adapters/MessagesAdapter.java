@@ -12,6 +12,7 @@ import java.util.List;
 
 import kasper.android.cross_word_admin.R;
 import kasper.android.cross_word_admin.activities.MessagesActivity;
+import kasper.android.cross_word_admin.activities.PresentActivity;
 import kasper.android.cross_word_admin.activities.YesNoActivity;
 import kasper.android.cross_word_admin.models.Message;
 import kasper.android.cross_word_admin.utils.PersianCalendar;
@@ -50,6 +51,15 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                 activity.startActivityForResult(new Intent(activity, YesNoActivity.class).putExtra
                         ("dialog-title", "حذف پیام").putExtra("dialog-content",
                         "آیا می خواهید این پیام حذف شود ؟"), 1);
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.startActivity(new Intent(activity, PresentActivity.class)
+                        .putExtra("present-title", "پیام")
+                        .putExtra("present-content", holder.timeTV.getText()
+                                + "\n\n" + msg.getContent()));
             }
         });
     }

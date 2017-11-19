@@ -96,9 +96,7 @@ public class MessagesActivity extends AppCompatActivity {
 
     public void onInfoBtnClicked(View view) {
         startActivity(new Intent(this, PresentActivity.class).putExtra("present-title", "پیام های عمومی")
-                .putExtra("present-content", new String[] {
-                        messagesRV.getAdapter().getItemCount() + " پیام عمومی ارسال شده است"
-                }));
+                .putExtra("present-content", messagesRV.getAdapter().getItemCount() + " پیام عمومی ارسال شده است"));
     }
 
     public void onAddBtnClicked(View view) {

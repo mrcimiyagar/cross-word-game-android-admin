@@ -97,9 +97,7 @@ public class WordsActivity extends AppCompatActivity {
 
     public void onInfoBtnClicked(View view) {
         startActivity(new Intent(this, PresentActivity.class).putExtra("present-title", "دفترچه ی واژگان")
-                .putExtra("present-content", new String[] {
-                        wordsRV.getAdapter().getItemCount() + " واژه در دفترچه ذخیره شده است"
-                }));
+                .putExtra("present-content", wordsRV.getAdapter().getItemCount() + " واژه در دفترچه ذخیره شده است"));
     }
 
     public void onAddBtnClicked(View view) {

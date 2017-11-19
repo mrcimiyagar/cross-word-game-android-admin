@@ -48,6 +48,8 @@
             android:gravity="center_vertical"
             android:textColor="#000"
             android:textSize="18sp"
+            android:maxLines="3"
+            android:ellipsize="end"
             android:text="سلام . نسخه ی جدید بازی در یک ماه آینده منتشر خواهد شد . از همراهی شما عزیزان  متشکریم !"
             android:paddingTop="12dp"
             android:paddingBottom="12dp"/>

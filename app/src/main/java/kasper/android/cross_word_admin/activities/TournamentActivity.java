@@ -105,10 +105,8 @@ public class TournamentActivity extends AppCompatActivity {
 
     public void onInfoBtnClicked(View view) {
         startActivity(new Intent(this, PresentActivity.class).putExtra("present-title", "تورنمنت")
-                .putExtra("present-content", new String[] {
-                        "تورنمنت " + totalDays + " روزه فعال است",
-                        leftDays + " روز تا پایان تورنمنت باقی مانده است"
-                }));
+                .putExtra("present-content", "تورنمنت " + totalDays + " روزه فعال است"
+                        + "\n" + leftDays + " روز تا پایان تورنمنت باقی مانده است"));
     }
 
     private void readTourPlayersFromServer(final SwipeToRefreshListener.RefreshIndicator refreshIndicator) {
