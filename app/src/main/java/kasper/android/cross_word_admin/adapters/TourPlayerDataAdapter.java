@@ -40,7 +40,7 @@ public class TourPlayerDataAdapter extends TableDataAdapter<TourPlayer> {
                 fieldView.setText(player.getName());
                 break;
             case 2:
-                fieldView.setText((rowIndex + 1) + "");
+                fieldView.setText(player.getAccNum());
                 break;
         }
 

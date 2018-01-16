@@ -48,7 +48,7 @@ public class StartTournamentActivity extends AppCompatActivity {
                     final String firstKey = "s6d5f4g32xc1vbq98er7t6d5g4h321f63b4m4yik65l799i8ketn";
                     final String secondKey = "uo987dg6j51s32fn165qatj465tul7r989ik4w3n152uk465s16a2h";
 
-                    String urlStr = "http://136.243.229.153/CrossWordGame/api/MainDatas/" + method + "?firstKey="
+                    String urlStr = "http://kaspersoft.ir/api/MainDatas/" + method + "?firstKey="
                             + firstKey + "&secondKey=" + secondKey + "&totalDays=" + totalDays;
 
                     Log.d("KasperLogger", urlStr);

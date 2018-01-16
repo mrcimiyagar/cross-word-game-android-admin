@@ -5,6 +5,7 @@ public class TourPlayer {
     private int id;
     private String name;
     private int score;
+    private String accNum;
 
     public int getId() {
         return id;
@@ -28,5 +29,13 @@ public class TourPlayer {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getAccNum() {
+        return accNum;
+    }
+
+    public void setAccNum(String accNum) {
+        this.accNum = accNum;
     }
 }

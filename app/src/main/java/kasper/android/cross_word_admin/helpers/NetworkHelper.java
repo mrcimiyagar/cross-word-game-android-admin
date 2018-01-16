@@ -4,16 +4,23 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import kasper.android.cross_word_admin.activities.StartTournamentActivity;
+import kasper.android.cross_word_admin.callbacks.OnGameGuideReadListener;
 import kasper.android.cross_word_admin.callbacks.OnGameLevelModifiesListener;
 import kasper.android.cross_word_admin.callbacks.OnGameLevelsReadListener;
+import kasper.android.cross_word_admin.callbacks.OnGuideClearedListener;
+import kasper.android.cross_word_admin.callbacks.OnGuideUpdatedListener;
+import kasper.android.cross_word_admin.callbacks.OnHelpCoinsUpdatedListener;
 import kasper.android.cross_word_admin.callbacks.OnMessageModifiedListener;
 import kasper.android.cross_word_admin.callbacks.OnMessagesReadListener;
+import kasper.android.cross_word_admin.callbacks.OnStoreCoinsUpdatedListener;
 import kasper.android.cross_word_admin.callbacks.OnWordModifiedListener;
 import kasper.android.cross_word_admin.callbacks.OnWordsReadListener;
 import kasper.android.cross_word_admin.core.MyApp;
@@ -21,15 +28,17 @@ import kasper.android.cross_word_admin.models.GameLevel;
 import kasper.android.cross_word_admin.models.Message;
 import kasper.android.cross_word_admin.models.Word;
 import kasper.android.cross_word_admin.models.WordInfo;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class NetworkHelper {
     
     private final String LOG_TAG = "network helper";
 
-    private final String serverAddress = "http://136.243.229.153";
+    private final String serverAddress = "http://kaspersoft.ir/";
     private final String adminFirstKey = "s6d5f4g32xc1vbq98er7t6d5g4h321f63b4m4yik65l799i8ketn";
     private final String adminSecondKey = "uo987dg6j51s32fn165qatj465tul7r989ik4w3n152uk465s16a2h";
     private final String gameLevelsControllerName = "GameLevels";
@@ -46,6 +55,12 @@ public class NetworkHelper {
     private final String methodReadWords = "ReadWords";
     private final String methodAddWord = "AddWord";
     private final String methodDeleteWord = "DeleteWord";
+    private final String mainDatasControllerName = "MainDatas";
+    private final String methodReadGuide = "ReadGuide";
+    private final String methodEditGuide = "EditGuide";
+    private final String methodClearGuide = "ClearGuide";
+    private final String methodEditStoreCoins = "EditStoreCoinPack";
+    private final String methodEditHelpCoins = "EditHelpCoinPack";
 
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) MyApp.getInstance()
@@ -62,7 +77,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + gameLevelsControllerName
+                    String urlStr = serverAddress + "/api/" + gameLevelsControllerName
                             + "/" + methodReadGameLevels + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -191,7 +206,7 @@ public class NetworkHelper {
 
                     Log.d("KasperLogger", "creating new level...");
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + gameLevelsControllerName
+                    String urlStr = serverAddress + "/api/" + gameLevelsControllerName
                             + "/" + methodAddGameLevel + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&number=" + number + "&prize=" + prize + "&tableData="
                             + tableData + "&questionData=" + questionData + "&answerData=" + answerData;
@@ -254,7 +269,7 @@ public class NetworkHelper {
                         }
                     }
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + gameLevelsControllerName
+                    String urlStr = serverAddress + "/api/" + gameLevelsControllerName
                             + "/" + methodEditGameLevel + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&gameLevelId=" + gameLevelId + "&number=" + number
                             + "&prize=" + prize + "&tableData=" + tableData + "&questionData="
@@ -288,7 +303,7 @@ public class NetworkHelper {
                 try {
                     String gameLevelId = gameLevel.getId() + "";
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + gameLevelsControllerName
+                    String urlStr = serverAddress + "/api/" + gameLevelsControllerName
                             + "/" + methodDeleteGameLevel + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&gameLevelId=" + gameLevelId;
                     OkHttpClient client = new OkHttpClient();
@@ -319,7 +334,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + messagesControllerName
+                    String urlStr = serverAddress + "/api/" + messagesControllerName
                             + "/" + methodReadMessages + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -367,7 +382,7 @@ public class NetworkHelper {
             public void run() {
 
                 try {
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + messagesControllerName
+                    String urlStr = serverAddress + "/api/" + messagesControllerName
                             + "/" + methodAddMessage + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&content=" + content;
                     OkHttpClient client = new OkHttpClient();
@@ -399,7 +414,7 @@ public class NetworkHelper {
             public void run() {
 
                 try {
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + messagesControllerName
+                    String urlStr = serverAddress + "/api/" + messagesControllerName
                             + "/" + methodDeleteMessage + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&messageId=" + id;
                     OkHttpClient client = new OkHttpClient();
@@ -432,7 +447,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + wordsControllerName
+                    String urlStr = serverAddress + "/api/" + wordsControllerName
                             + "/" + methodReadWords + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -480,7 +495,7 @@ public class NetworkHelper {
             public void run() {
 
                 try {
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + wordsControllerName
+                    String urlStr = serverAddress + "/api/" + wordsControllerName
                             + "/" + methodAddWord + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&word=" + word + "&meaning=" + meaning;
                     OkHttpClient client = new OkHttpClient();
@@ -512,7 +527,7 @@ public class NetworkHelper {
             public void run() {
 
                 try {
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + wordsControllerName
+                    String urlStr = serverAddress + "/api/" + wordsControllerName
                             + "/" + methodDeleteWord + "?firstKey=" + adminFirstKey + "&secondKey="
                             + adminSecondKey + "&wordId=" + id;
                     OkHttpClient client = new OkHttpClient();
@@ -532,6 +547,182 @@ public class NetworkHelper {
                 }
                 catch (Exception ignored) {
                     ignored.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void readGameGuideFromServer(final OnGameGuideReadListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "/api/" + mainDatasControllerName
+                            + "/" + methodReadGuide + "?firstKey=" + adminFirstKey + "&secondKey="
+                            + adminSecondKey;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    result = result.substring(1, result.length() - 1);
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.gameGuideRead(result);
+
+                } catch (Exception ignored) {
+                    ignored.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void clearGuideInServer(final OnGuideClearedListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "api/" + mainDatasControllerName
+                            + "/" + methodClearGuide + "?firstKey=" + adminFirstKey + "&secondKey="
+                            + adminSecondKey;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    result = result.substring(1, result.length() - 1);
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.guideCleared();
+
+                } catch (Exception ignored) {
+                    ignored.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void updateGuideInServer(final String text, final OnGuideUpdatedListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "api/" + mainDatasControllerName
+                            + "/" + methodEditGuide + "?firstKey=" + adminFirstKey + "&secondKey="
+                            + adminSecondKey + "&text=" + text;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    result = result.substring(1, result.length() - 1);
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.guideUpdated();
+                }
+                catch (Exception ignored) {
+
+                }
+            }
+        }).start();
+    }
+
+    public void updateStoreCoinsInServer(final int coin, final OnStoreCoinsUpdatedListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "api/" + mainDatasControllerName
+                            + "/" + methodEditStoreCoins + "?firstKey=" + adminFirstKey + "&secondKey="
+                            + adminSecondKey + "&coin=" + coin;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.storeCoinsUpdated();
+                }
+                catch (Exception ignored) {
+
+                }
+            }
+        }).start();
+    }
+
+    public void updateHelpCoinsInServer(final int coin, final OnHelpCoinsUpdatedListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "api/" + mainDatasControllerName
+                            + "/" + methodEditHelpCoins + "?firstKey=" + adminFirstKey + "&secondKey="
+                            + adminSecondKey + "&coin=" + coin;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.helpCoinsUpdated();
+                }
+                catch (Exception ignored) {
+
                 }
             }
         }).start();

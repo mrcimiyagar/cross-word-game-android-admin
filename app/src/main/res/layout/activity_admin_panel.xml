@@ -48,7 +48,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@color/colorPrimary">
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -116,7 +117,8 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@color/colorPrimary">
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -182,23 +184,49 @@
                         android:textSize="18sp"
                         android:layout_marginBottom="8dp"/>
 
-                    <Button
-                        android:id="@+id/activity_admin_panel_tour_control_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="56dp"
-                        android:layout_gravity="left"
-                        android:background="@drawable/rectound_stroke"
-                        android:text="لیست کاربران"
-                        android:gravity="center"
-                        android:layout_marginLeft="24dp"
-                        android:layout_marginRight="24dp"
-                        android:paddingRight="16dp"
-                        android:paddingLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="24dp"
-                        android:textColor="#fff"
-                        android:textSize="16sp"
-                        android:onClick="onTournamentBtnClicked"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="16dp">
+
+                        <Button
+                            android:id="@+id/activity_admin_panel_tour_control_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_gravity="left"
+                            android:background="@drawable/rectound_stroke"
+                            android:text="لیست کاربران"
+                            android:gravity="center"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="24dp"
+                            android:paddingRight="16dp"
+                            android:paddingLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="24dp"
+                            android:textColor="#fff"
+                            android:textSize="16sp"
+                            android:onClick="onTournamentBtnClicked"/>
+
+                        <Button
+                            android:id="@+id/activity_admin_panel_tour_players_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:layout_gravity="left"
+                            android:background="@drawable/rectound_stroke"
+                            android:text="لیست کاربران"
+                            android:gravity="center"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="24dp"
+                            android:paddingRight="16dp"
+                            android:paddingLeft="16dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="24dp"
+                            android:textColor="#fff"
+                            android:textSize="16sp"
+                            android:onClick="onTourPlayersBtnClicked"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -211,7 +239,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@color/colorPrimary">
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -278,7 +307,8 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="14dp"
-                app:cardBackgroundColor="@color/colorPrimary">
+                app:cardBackgroundColor="@color/colorPrimary"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -333,6 +363,132 @@
                         android:textColor="#fff"
                         android:textSize="16sp"
                         android:onClick="onDictionaryBtnClicked"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="@color/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:text="راهنما"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:paddingRight="32dp"
+                        android:paddingLeft="32dp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#fff"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/rectound_stroke"
+                        android:text="ویرایش راهنما"
+                        android:gravity="center"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:onClick="onGuideBtnClicked"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="14dp"
+                app:cardBackgroundColor="@color/colorPrimary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:text="سکه ها"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:paddingRight="32dp"
+                        android:paddingLeft="32dp" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:background="#fff"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"/>
+
+                    <TextView
+                        android:id="@+id/activity_admin_panel_store_coin_pack_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:text="سکه های فروشگاه : 100"
+                        android:textColor="#fff"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="32dp"
+                        android:paddingLeft="32dp" />
+
+                    <TextView
+                        android:id="@+id/activity_admin_panel_help_coin_pack_text_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                        android:text="سکه های کمک : 100"
+                        android:textColor="#fff"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="32dp"
+                        android:paddingLeft="32dp" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="56dp"
+                        android:layout_gravity="left"
+                        android:background="@drawable/rectound_stroke"
+                        android:text="ویرایش سکه ها"
+                        android:gravity="center"
+                        android:layout_marginLeft="24dp"
+                        android:layout_marginRight="24dp"
+                        android:paddingRight="16dp"
+                        android:paddingLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:textColor="#fff"
+                        android:textSize="16sp"
+                        android:onClick="onCoinsBtnClicked"/>
 
                 </LinearLayout>
 

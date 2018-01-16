@@ -51,8 +51,8 @@ public class TournamentActivity extends AppCompatActivity {
 
         TableColumnWeightModel columnModel = new TableColumnWeightModel(3);
         columnModel.setColumnWeight(0, 2);
-        columnModel.setColumnWeight(1, 5);
-        columnModel.setColumnWeight(2, 2);
+        columnModel.setColumnWeight(1, 3);
+        columnModel.setColumnWeight(2, 5);
         tableView.setColumnModel(columnModel);
 
         tableView.setSwipeToRefreshEnabled(true);
@@ -85,7 +85,7 @@ public class TournamentActivity extends AppCompatActivity {
                         headerView.setText("نام بازیکن");
                         break;
                     case 2:
-                        headerView.setText("رتبه");
+                        headerView.setText("شماره حساب");
                         break;
                 }
 
@@ -123,7 +123,7 @@ public class TournamentActivity extends AppCompatActivity {
                     final String firstKey = "s6d5f4g32xc1vbq98er7t6d5g4h321f63b4m4yik65l799i8ketn";
                     final String secondKey = "uo987dg6j51s32fn165qatj465tul7r989ik4w3n152uk465s16a2h";
 
-                    String urlStr = "http://136.243.229.153/CrossWordGame/api/TourPlayers/" + method + "?firstKey="
+                    String urlStr = "http://kaspersoft.ir/api/TourPlayers/" + method + "?firstKey="
                             + firstKey + "&secondKey=" + secondKey + "&updateVersion=" + System.currentTimeMillis();
 
                     Log.d("KasperLogger", urlStr);
@@ -149,6 +149,7 @@ public class TournamentActivity extends AppCompatActivity {
                         tourPlayer.setId(jsonObject.getInt("id"));
                         tourPlayer.setName(jsonObject.getString("name"));
                         tourPlayer.setScore(jsonObject.getInt("score"));
+                        tourPlayer.setAccNum(jsonObject.getString("accNum"));
 
                         tourPlayers.add(tourPlayer);
                     }

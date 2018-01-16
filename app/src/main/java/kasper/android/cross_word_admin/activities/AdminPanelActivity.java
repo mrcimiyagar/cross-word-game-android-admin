@@ -23,11 +23,16 @@ public class AdminPanelActivity extends AppCompatActivity {
     private TextView tourLeftDaysTV;
     private TextView tourPlayersTV;
     private Button tourControlBtn;
+    private Button tourPlayersBtn;
     private TextView msgsCountTV;
     private TextView wordsCountTV;
+    private TextView storeCoinsTV;
+    private TextView helpCoinsTV;
 
     private boolean tourActive;
     private int tourTotalDays, tourLeftDays, tourPlayersCount;
+    private int storeCoinsCount;
+    private int helpCoinsCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +44,12 @@ public class AdminPanelActivity extends AppCompatActivity {
         this.tourTotalDaysTV = findViewById(R.id.activity_admin_panel_tour_total_days_count_text_view);
         this.tourLeftDaysTV = findViewById(R.id.activity_admin_panel_tour_left_days_count_text_view);
         this.tourPlayersTV = findViewById(R.id.activity_admin_panel_tour_players_count_text_view);
+        this.tourPlayersBtn = findViewById(R.id.activity_admin_panel_tour_players_button);
         this.tourControlBtn = findViewById(R.id.activity_admin_panel_tour_control_button);
         this.msgsCountTV = findViewById(R.id.activity_admin_panel_messages_count_text_view);
         this.wordsCountTV = findViewById(R.id.activity_admin_panel_words_count_text_view);
+        this.storeCoinsTV = findViewById(R.id.activity_admin_panel_store_coin_pack_text_view);
+        this.helpCoinsTV = findViewById(R.id.activity_admin_panel_help_coin_pack_text_view);
     }
 
     @Override
@@ -55,14 +63,13 @@ public class AdminPanelActivity extends AppCompatActivity {
     }
 
     public void onTournamentBtnClicked(View view) {
-        if (tourActive) {
-            startActivity(new Intent(this, TournamentActivity.class)
-                    .putExtra("tour-total-days", tourTotalDays)
-                    .putExtra("tour-left-days", tourLeftDays));
-        }
-        else {
-            startActivity(new Intent(this, StartTournamentActivity.class));
-        }
+        startActivity(new Intent(this, StartTournamentActivity.class));
+    }
+
+    public void onTourPlayersBtnClicked(View view) {
+        startActivity(new Intent(this, TournamentActivity.class)
+                .putExtra("tour-total-days", tourTotalDays)
+                .putExtra("tour-left-days", tourLeftDays));
     }
 
     public void onMessagesBtnClicked(View view) {
@@ -71,6 +78,16 @@ public class AdminPanelActivity extends AppCompatActivity {
 
     public void onDictionaryBtnClicked(View view) {
         startActivity(new Intent(this, WordsActivity.class));
+    }
+
+    public void onGuideBtnClicked(View view) {
+        startActivity(new Intent(this, GuideEditActivity.class));
+    }
+
+    public void onCoinsBtnClicked(View view) {
+        startActivity(new Intent(this, CoinsActivity.class)
+                .putExtra("store-coins", storeCoinsCount)
+                .putExtra("help-coins", helpCoinsCount));
     }
 
     private void readMainDataFromServer() {
@@ -87,7 +104,7 @@ public class AdminPanelActivity extends AppCompatActivity {
                     final String firstKey = "s6d5f4g32xc1vbq98er7t6d5g4h321f63b4m4yik65l799i8ketn";
                     final String secondKey = "uo987dg6j51s32fn165qatj465tul7r989ik4w3n152uk465s16a2h";
 
-                    String urlStr = "http://136.243.229.153/CrossWordGame/api/MainDatas/" + method + "?firstKey="
+                    String urlStr = "http://www.kaspersoft.ir/api/MainDatas/" + method + "?firstKey="
                             + firstKey + "&secondKey=" + secondKey + "&updateVersion=" + System.currentTimeMillis();
 
                     Log.d("KasperLogger", urlStr);
@@ -116,6 +133,8 @@ public class AdminPanelActivity extends AppCompatActivity {
                         tourPlayersCount = Integer.parseInt(resultParts[4]);
                         final int msgsCount = Integer.parseInt(resultParts[5]);
                         final int wordsCount = Integer.parseInt(resultParts[6]);
+                        storeCoinsCount = Integer.parseInt(resultParts[7]);
+                        helpCoinsCount = Integer.parseInt(resultParts[8]);
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -127,17 +146,20 @@ public class AdminPanelActivity extends AppCompatActivity {
                                     tourTotalDaysTV.setText("تورنمنت " + tourTotalDays + " روزه فعال است");
                                     tourLeftDaysTV.setText(tourLeftDays + " روز تا پایان تورنمنت باقی مانده است");
                                     tourPlayersTV.setText(tourPlayersCount + " کاربر در تورنمنت هستند");
-                                    tourControlBtn.setText("لیست کاربران");
+                                    tourControlBtn.setVisibility(View.GONE);
                                 }
                                 else {
                                     tourTotalDaysTV.setText("تورنمنت غیر فعال است");
                                     tourLeftDaysTV.setText("-");
                                     tourPlayersTV.setText("-");
+                                    tourControlBtn.setVisibility(View.VISIBLE);
                                     tourControlBtn.setText("ایجاد تورنمنت");
                                 }
 
                                 msgsCountTV.setText(msgsCount + " پیام عمومی ارسال شده است");
                                 wordsCountTV.setText(wordsCount + " واژه در دفترچه موجود است");
+                                storeCoinsTV.setText("تعداد سکه ی فروشگاه : " + storeCoinsCount);
+                                helpCoinsTV.setText("تعداد سکه ی کمک : " + helpCoinsCount);
 
                                 loadingLayout.setVisibility(View.GONE);
                             }

@@ -46,21 +46,29 @@
             android:name=".activities.PresentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dialog" />
-        <activity android:name=".activities.StartTournamentActivity"
+        <activity
+            android:name=".activities.StartTournamentActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.MessagesActivity"
+        <activity
+            android:name=".activities.MessagesActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.MessageAddActivity"
+        <activity
+            android:name=".activities.MessageAddActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dialog"/>
-        <activity android:name=".activities.WordsActivity"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity
+            android:name=".activities.WordsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.WordAddActivity"
+        <activity
+            android:name=".activities.WordAddActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dialog"/>
-        <activity android:name=".activities.WordDetailsActivity"
+            android:theme="@style/AppTheme.Dialog" />
+        <activity
+            android:name=".activities.WordDetailsActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dialog"/>
+            android:theme="@style/AppTheme.Dialog" />
+        <activity android:name=".activities.GuideEditActivity" />
+        <activity android:name=".activities.CoinsActivity"></activity>
     </application>
 
 </manifest>
